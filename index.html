@@ -311,7 +311,9 @@
             const aboutCloseBtn = document.querySelector('.about-close');
             
             if (aboutCloseBtn) {
-                aboutCloseBtn.onclick = () => {
+                aboutCloseBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
                     aboutPanel.classList.remove('show');
                     setTimeout(() => aboutPanel.classList.add('hidden'), 300);
                 };
@@ -321,6 +323,7 @@
             aboutPanel.addEventListener('click', function(e) {
                 // Check if click is directly on the dark overlay (not on the card content)
                 if (e.target === aboutPanel) {
+                    e.stopPropagation();
                     aboutPanel.classList.remove('show');
                     setTimeout(() => aboutPanel.classList.add('hidden'), 300);
                 }
@@ -569,7 +572,9 @@
             const projectsCloseBtn = document.querySelector('.projects-close');
             
             if (projectsCloseBtn) {
-                projectsCloseBtn.onclick = () => {
+                projectsCloseBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
                     projectsPanel.classList.remove('show');
                     setTimeout(() => projectsPanel.classList.add('hidden'), 300);
                 };
@@ -578,6 +583,7 @@
             // Close projects panel when clicking outside
             projectsPanel.addEventListener('click', function(e) {
                 if (e.target === projectsPanel) {
+                    e.stopPropagation();
                     projectsPanel.classList.remove('show');
                     setTimeout(() => projectsPanel.classList.add('hidden'), 300);
                 }
@@ -588,7 +594,9 @@
             const detailCloseBtn = document.querySelector('.project-detail-close');
             
             if (detailCloseBtn) {
-                detailCloseBtn.onclick = () => {
+                detailCloseBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
                     detailPanel.classList.remove('show');
                     setTimeout(() => detailPanel.classList.add('hidden'), 300);
                 };
@@ -597,6 +605,7 @@
             // Close detail panel when clicking outside
             detailPanel.addEventListener('click', function(e) {
                 if (e.target === detailPanel) {
+                    e.stopPropagation();
                     detailPanel.classList.remove('show');
                     setTimeout(() => detailPanel.classList.add('hidden'), 300);
                 };
@@ -632,7 +641,9 @@
             const workCloseBtn = document.querySelector('.work-experience-close');
             
             if (workCloseBtn) {
-                workCloseBtn.onclick = () => {
+                workCloseBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
                     workPanel.classList.remove('show');
                     setTimeout(() => workPanel.classList.add('hidden'), 300);
                 };
@@ -641,6 +652,7 @@
             // Close work panel when clicking outside
             workPanel.addEventListener('click', function(e) {
                 if (e.target === workPanel) {
+                    e.stopPropagation();
                     workPanel.classList.remove('show');
                     setTimeout(() => workPanel.classList.add('hidden'), 300);
                 }
@@ -651,7 +663,9 @@
             const eduCloseBtn = document.querySelector('.education-close');
             
             if (eduCloseBtn) {
-                eduCloseBtn.onclick = () => {
+                eduCloseBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
                     eduPanel.classList.remove('show');
                     setTimeout(() => eduPanel.classList.add('hidden'), 300);
                 };
@@ -660,6 +674,7 @@
             // Close education panel when clicking outside
             eduPanel.addEventListener('click', function(e) {
                 if (e.target === eduPanel) {
+                    e.stopPropagation();
                     eduPanel.classList.remove('show');
                     setTimeout(() => eduPanel.classList.add('hidden'), 300);
                 }
@@ -670,7 +685,9 @@
             const contactCloseBtn = document.querySelector('.contact-close');
             
             if (contactCloseBtn) {
-                contactCloseBtn.onclick = () => {
+                contactCloseBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
                     contactPanel.classList.remove('show');
                     setTimeout(() => contactPanel.classList.add('hidden'), 300);
                 };
@@ -679,6 +696,7 @@
             // Close contact panel when clicking outside
             contactPanel.addEventListener('click', function(e) {
                 if (e.target === contactPanel) {
+                    e.stopPropagation();
                     contactPanel.classList.remove('show');
                     setTimeout(() => contactPanel.classList.add('hidden'), 300);
                 }

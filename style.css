@@ -472,7 +472,7 @@ canvas {
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
-    z-index: 100;
+    z-index: 200;
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
@@ -502,10 +502,21 @@ canvas {
     overflow-y: auto;
     transform: scale(0.8);
     transition: transform 0.3s ease;
+    /* Prevent clicks from passing through to 3D scene */
+    pointer-events: auto;
 }
 
 .about-panel.show .scrapbook-container {
     transform: scale(1);
+}
+
+/* Prevent all modal content from passing clicks through */
+.desktop-window,
+.work-experience-window,
+.education-window,
+.business-card,
+.project-detail-window {
+    pointer-events: auto;
 }
 
 .about-close {
@@ -668,7 +679,7 @@ canvas {
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
-    z-index: 100;
+    z-index: 200;
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
@@ -858,7 +869,7 @@ canvas {
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
-    z-index: 101;
+    z-index: 250;
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
@@ -975,7 +986,7 @@ canvas {
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
-    z-index: 100;
+    z-index: 200;
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
@@ -1169,7 +1180,7 @@ canvas {
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
-    z-index: 100;
+    z-index: 200;
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
@@ -1428,7 +1439,7 @@ canvas {
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
-    z-index: 100;
+    z-index: 200;
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;

@@ -43,9 +43,9 @@ class Portfolio {
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         // Adaptive pixel ratio based on device
         if (this.isTinyScreen) {
-            this.renderer.setPixelRatio(1);
-        } else if (this.isMobile || this.isTablet) {
             this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        } else if (this.isMobile || this.isTablet) {
+            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         } else {
             this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         }
@@ -351,33 +351,35 @@ class Portfolio {
                 const uv = menuIntersects[0].uv;
                 const yPos = uv.y;
                 
-                // Menu items positions (approximate) - UV Y is inverted
-                if (yPos > 0.72 && yPos < 0.78) {
-                    // About me clicked
+                console.log('Menu clicked! UV Y:', yPos); // Debug
+                
+                // Menu items positions - more precise ranges to prevent overlap
+                // Canvas: 1024px tall, items at Y: 220, 290, 360, 430, 500
+                if (yPos >= 0.72 && yPos < 0.77) {
+                    // About me: ~0.746
                     window.showAboutMe();
                     return;
                 }
-                if (yPos > 0.66 && yPos < 0.72) {
-                    // Projects clicked
+                if (yPos >= 0.65 && yPos < 0.72) {
+                    // Projects: ~0.678
                     window.showProjects();
                     return;
                 }
-                if (yPos > 0.59 && yPos < 0.66) {
-                    // Work experience clicked
+                if (yPos >= 0.58 && yPos < 0.65) {
+                    // Work experience: ~0.609
                     window.showWorkExperience();
                     return;
                 }
-                if (yPos > 0.52 && yPos < 0.59) {
-                    // Education clicked
+                if (yPos >= 0.51 && yPos < 0.58) {
+                    // Education: ~0.541
                     window.showEducation();
                     return;
                 }
-                if (yPos > 0.45 && yPos < 0.52) {
-                    // Contact me clicked
+                if (yPos >= 0.44 && yPos < 0.51) {
+                    // Contact me: ~0.473
                     window.showContact();
                     return;
                 }
-                // Add more menu items here later
             }
         }
         
@@ -507,16 +509,16 @@ class Portfolio {
                         
                         console.log('Menu tapped! UV Y:', yPos); // Debug log
                         
-                        // Menu items positions
-                        if (yPos > 0.72 && yPos < 0.78) {
+                        // Menu items positions - precise ranges to prevent overlap
+                        if (yPos >= 0.72 && yPos < 0.77) {
                             window.showAboutMe();
-                        } else if (yPos > 0.66 && yPos < 0.72) {
+                        } else if (yPos >= 0.65 && yPos < 0.72) {
                             window.showProjects();
-                        } else if (yPos > 0.59 && yPos < 0.66) {
+                        } else if (yPos >= 0.58 && yPos < 0.65) {
                             window.showWorkExperience();
-                        } else if (yPos > 0.52 && yPos < 0.59) {
+                        } else if (yPos >= 0.51 && yPos < 0.58) {
                             window.showEducation();
-                        } else if (yPos > 0.45 && yPos < 0.52) {
+                        } else if (yPos >= 0.44 && yPos < 0.51) {
                             window.showContact();
                         }
                         
