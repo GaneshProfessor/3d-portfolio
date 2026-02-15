@@ -1,3 +1,9 @@
+/**
+ * 3D Portfolio - Ganesh KS
+ * Inspired by Rachel Wei's portfolio: https://rachelqrwei.ca/
+ * Built with Three.js, GSAP, and Vite
+ */
+
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { Reflector } from 'three/examples/jsm/objects/Reflector.js';
