@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My 3D Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loader">
+            <div class="spinner"></div>
+            <p>Loading your experience...</p>
+        </div>
+    </div>
+
+    <!-- Contact Icons - Top Right -->
+    <div class="contact-icons">
+        <span class="contact-label">Contact me:</span>
+        <a href="https://www.linkedin.com/in/ganesh020" target="_blank" class="icon-link" title="LinkedIn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+        </a>
+        <a href="mailto:ganesh204002@gmail.com" class="icon-link email-link" title="Email" data-email="ganesh204002@gmail.com">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
+            </svg>
+        </a>
+        <a href="https://github.com/ganeshprofessor" target="_blank" class="icon-link" title="GitHub">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+        </a>
+        <a href="https://wa.me/919176644796" target="_blank" class="icon-link" title="WhatsApp">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <div class="player-controls">
+            <button id="play-pause" class="control-btn">▶</button>
+            <div class="track-info">
+                <div class="track-name">Mr Bean Animated</div>
+                <div class="artist-name">Background Music</div>
+            </div>
+            <input type="range" id="volume" min="0" max="100" value="50" class="volume-slider">
+        </div>
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+    </div>
+
+    <div id="info-panel" class="info-panel hidden">
+        <button class="close-btn">&times;</button>
+        <h2 id="project-title"></h2>
+        <p id="project-description"></p>
+        <div id="project-skills"></div>
+        <a id="project-link" href="#" target="_blank">View Project</a>
+    </div>
+
+    <!-- About Me Modal -->
+    <div id="about-panel" class="about-panel hidden">
+        <button class="close-btn about-close">&times;</button>
+        <div class="scrapbook-container">
+            <h2 class="scrapbook-title">about me !!</h2>
+            
+            <div class="polaroid-grid">
+                <!-- Row 1: Image + Text -->
+                <div class="polaroid-row">
+                    <div class="polaroid">
+                        <div class="polaroid-image" style="background-image: url('/images/Ganesh1.png'); background-size: cover; background-position: center;">
+                        </div>
+                    </div>
+                    <div class="text-box">
+                        Hi! I'm Ganesh, and I'm a MCA & B.COM student from Chennai!
+                    </div>
+                </div>
+
+                <!-- Row 2: Image + Image -->
+                <div class="polaroid-row">
+                    <div class="polaroid">
+                        <div class="polaroid-image" style="background-image: url('/images/Ganesh3.png'); background-size: cover; background-position: center;">
+                        </div>
+                    </div>
+                    
+                    <div class="polaroid">
+                        <div class="polaroid-image" style="background-image: url('/images/Ganesh2.png'); background-size: cover; background-position: center;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 3: Image + Text -->
+                <div class="polaroid-row">
+                    <div class="polaroid">
+                        <div class="polaroid-image" style="background-image: url('/images/Ganesh4.png'); background-size: cover; background-position: center;">
+                        </div>
+                    </div>
+                    <div class="text-box">
+                        I'm passionate about combining technical skills with my problem solving to bring ideas to life.
+                    </div>
+                </div>
+
+                <!-- Row 4: Thank you + Image -->
+                <div class="polaroid-row">
+                    <div class="thank-you-note">
+                        Thanks for checking out my website!
+                    </div>
+                    
+                    <div class="polaroid">
+                        <div class="polaroid-image" style="background-image: url('/images/Ganesh5.png'); background-size: cover; background-position: center;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects Modal -->
+    <div id="projects-panel" class="projects-panel hidden">
+        <div class="desktop-window">
+            <div class="window-header">
+                <span class="window-title">desktop > my projects</span>
+                <button class="close-btn projects-close">&times;</button>
+            </div>
+            <div class="folders-grid" id="folders-grid">
+                <!-- Folders will be added here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Detail Modal -->
+    <div id="project-detail-panel" class="project-detail-panel hidden">
+        <div class="project-detail-window">
+            <button class="close-btn project-detail-close">&times;</button>
+            <div class="project-image" id="project-image"></div>
+            <h2 id="detail-project-title"></h2>
+            <p id="detail-project-description"></p>
+            <div id="detail-project-skills"></div>
+            <a id="detail-project-link" href="#" target="_blank">View Project</a>
+        </div>
+    </div>
+
+    <!-- Work Experience Modal -->
+    <div id="work-experience-panel" class="work-experience-panel hidden">
+        <div class="work-experience-window">
+            <button class="close-btn work-experience-close">&times;</button>
+            <h2 class="section-title">Work Experience</h2>
+            <div class="timeline" id="work-timeline">
+                <!-- Timeline items will be added here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Education Modal -->
+    <div id="education-panel" class="education-panel hidden">
+        <div class="education-window">
+            <button class="close-btn education-close">&times;</button>
+            <h2 class="section-title">Education</h2>
+            <div class="education-grid" id="education-grid">
+                <!-- Education cards will be added here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Me Modal -->
+    <div id="contact-panel" class="contact-panel hidden">
+        <div class="business-card">
+            <button class="close-btn contact-close">&times;</button>
+            <div class="card-layout">
+                <div class="card-left">
+                    <h2 class="card-name">Ganesh KS</h2>
+                    <p class="card-title">Python Developer</p>
+                    <p class="card-subtitle">MCA & B.COM Student at Chennai</p>
+                    
+                    <div class="card-divider"></div>
+                    
+                    <div class="card-info">
+                        <p class="card-email">ganesh204002@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="card-right">
+                    <a href="https://www.linkedin.com/in/ganesh020" target="_blank" class="social-icon-vertical" title="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/ganeshprofessor" target="_blank" class="social-icon-vertical" title="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:ganesh204002@gmail.com" class="social-icon-vertical email-icon-card" title="Email" data-email="ganesh204002@gmail.com">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/919176644796" target="_blank" class="social-icon-vertical" title="WhatsApp">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import ProjectsData
+        import { ProjectsData } from './src/ProjectsData.js';
+        import { WorkExperienceData } from './src/WorkExperienceData.js';
+        import { EducationData } from './src/EducationData.js';
+        
+        // Make them globally accessible
+        window.ProjectsData = ProjectsData;
+        window.WorkExperienceData = WorkExperienceData;
+        window.EducationData = EducationData;
+    </script>
+
+    <script>
+        // Handle email link - open Gmail web or fallback to mailto
+        document.addEventListener('DOMContentLoaded', function() {
+            // Email link in header
+            const emailLink = document.querySelector('.email-link');
+            if (emailLink) {
+                emailLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const email = this.getAttribute('data-email');
+                    
+                    // Try to open Gmail web interface
+                    const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`;
+                    const newWindow = window.open(gmailWebUrl, '_blank');
+                    
+                    // Fallback to mailto if popup was blocked or failed
+                    setTimeout(function() {
+                        if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                            window.location.href = `mailto:${email}`;
+                        }
+                    }, 1000);
+                });
+            }
+            
+            // Email icon in contact card
+            const emailIconCard = document.querySelector('.email-icon-card');
+            if (emailIconCard) {
+                emailIconCard.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const email = this.getAttribute('data-email');
+                    
+                    // Detect if mobile device
+                    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                    
+                    if (isMobile) {
+                        // On mobile, try Gmail app first, then fallback to mailto
+                        const gmailAppUrl = `googlegmail://co?to=${email}`;
+                        window.location.href = gmailAppUrl;
+                        
+                        // Fallback to mailto after a short delay
+                        setTimeout(function() {
+                            window.location.href = `mailto:${email}`;
+                        }, 500);
+                    } else {
+                        // On desktop, open Gmail web interface
+                        const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`;
+                        const newWindow = window.open(gmailWebUrl, '_blank');
+                        
+                        // Fallback to mailto if popup was blocked
+                        setTimeout(function() {
+                            if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                                window.location.href = `mailto:${email}`;
+                            }
+                        }, 1000);
+                    }
+                });
+            }
+
+            // Handle About Me panel
+            const aboutPanel = document.getElementById('about-panel');
+            const aboutCloseBtn = document.querySelector('.about-close');
+            
+            if (aboutCloseBtn) {
+                aboutCloseBtn.onclick = () => {
+                    aboutPanel.classList.remove('show');
+                    setTimeout(() => aboutPanel.classList.add('hidden'), 300);
+                };
+            }
+
+            // Close about panel when clicking outside
+            aboutPanel.addEventListener('click', function(e) {
+                // Check if click is directly on the dark overlay (not on the card content)
+                if (e.target === aboutPanel) {
+                    aboutPanel.classList.remove('show');
+                    setTimeout(() => aboutPanel.classList.add('hidden'), 300);
+                }
+            });
+
+            // Close about panel with ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' || e.key === 'Esc') {
+                    if (aboutPanel && !aboutPanel.classList.contains('hidden')) {
+                        aboutPanel.classList.remove('show');
+                        setTimeout(() => aboutPanel.classList.add('hidden'), 300);
+                    }
+                }
+            });
+        });
+
+        // Function to show about me panel (will be called from main.js)
+        function showAboutMe() {
+            const panel = document.getElementById('about-panel');
+            panel.classList.remove('hidden');
+            setTimeout(() => panel.classList.add('show'), 10);
+        }
+
+        // Function to show work experience panel (will be called from main.js)
+        function showWorkExperience() {
+            const panel = document.getElementById('work-experience-panel');
+            const timeline = document.getElementById('work-timeline');
+            
+            // Clear existing timeline
+            timeline.innerHTML = '';
+            
+            // Get work experience data
+            const experiences = window.WorkExperienceData || [];
+            
+            if (experiences.length === 0) {
+                timeline.innerHTML = '<p style="text-align: center; color: #666;">No work experience added yet. Update WorkExperienceData.js to add your experience.</p>';
+            } else {
+                // Create timeline items
+                experiences.forEach(exp => {
+                    const timelineItem = document.createElement('div');
+                    timelineItem.className = 'timeline-item';
+                    
+                    let achievementsHTML = '';
+                    if (exp.achievements && exp.achievements.length > 0) {
+                        achievementsHTML = '<ul class="achievements-list">';
+                        exp.achievements.forEach(achievement => {
+                            achievementsHTML += `<li>${achievement}</li>`;
+                        });
+                        achievementsHTML += '</ul>';
+                    }
+                    
+                    let skillsHTML = '';
+                    if (exp.skills && exp.skills.length > 0) {
+                        skillsHTML = '<div class="work-skills">';
+                        exp.skills.forEach(skill => {
+                            skillsHTML += `<span class="work-skill-tag">${skill}</span>`;
+                        });
+                        skillsHTML += '</div>';
+                    }
+                    
+                    timelineItem.innerHTML = `
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="company-name">${exp.company}</div>
+                            <div class="position">${exp.position}</div>
+                            <div class="duration">${exp.duration}</div>
+                            <div class="location">${exp.location}</div>
+                            <p class="job-description">${exp.description}</p>
+                            ${achievementsHTML}
+                            ${skillsHTML}
+                        </div>
+                    `;
+                    
+                    timeline.appendChild(timelineItem);
+                });
+            }
+            
+            panel.classList.remove('hidden');
+            setTimeout(() => panel.classList.add('show'), 10);
+        }
+
+        // Function to show education panel (will be called from main.js)
+        function showEducation() {
+            const panel = document.getElementById('education-panel');
+            const grid = document.getElementById('education-grid');
+            
+            // Clear existing cards
+            grid.innerHTML = '';
+            
+            // Get education data
+            const educations = window.EducationData || [];
+            
+            if (educations.length === 0) {
+                grid.innerHTML = '<p style="text-align: center; color: #fff;">No education added yet. Update EducationData.js to add your education.</p>';
+            } else {
+                // Create ID card style education cards
+                educations.forEach(edu => {
+                    const card = document.createElement('div');
+                    card.className = 'education-card';
+                    
+                    // Photo section - use placeholder or actual photo
+                    const photoHTML = edu.photo 
+                        ? `<img src="${edu.photo}" alt="${edu.degree}">`
+                        : `<div class="id-photo-placeholder">🎓</div>`;
+                    
+                    // Logo - use image if it's a path, otherwise use emoji
+                    const logoHTML = edu.logo && edu.logo.startsWith('/') 
+                        ? `<img src="${edu.logo}" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;">` 
+                        : edu.logo || '🎓';
+                    
+                    // Generate barcode lines
+                    const barcodeHTML = '<div class="barcode-lines">' + 
+                        '<span></span>'.repeat(15) + 
+                        '</div>';
+                    
+                    // Make barcode clickable if certificate link exists
+                    const barcodeClass = edu.certificateLink ? 'id-barcode clickable-barcode' : 'id-barcode';
+                    const barcodeTitle = edu.certificateLink ? 'Click to view certificate' : '';
+                    
+                    card.innerHTML = `
+                        <div class="id-photo">${photoHTML}</div>
+                        <div class="id-details">
+                            <div class="id-header">
+                                <div class="student-name">${edu.studentName || 'Your Name'}</div>
+                                <div class="institution-name">${edu.institution}</div>
+                                <div class="degree-name">${edu.degree}</div>
+                                <div class="edu-duration">School Year: ${edu.duration}</div>
+                            </div>
+                            <div class="${barcodeClass}" title="${barcodeTitle}" data-certificate="${edu.certificateLink || ''}">
+                                ${barcodeHTML}
+                                <div class="student-id">Student ID: ${edu.studentId || '00000000'}</div>
+                            </div>
+                        </div>
+                        <div class="university-logo">${logoHTML}</div>
+                    `;
+                    
+                    grid.appendChild(card);
+                    
+                    // Add click event to barcode if certificate link exists
+                    if (edu.certificateLink) {
+                        const barcode = card.querySelector('.clickable-barcode');
+                        barcode.addEventListener('click', function() {
+                            window.open(edu.certificateLink, '_blank');
+                        });
+                    }
+                });
+            }
+            
+            panel.classList.remove('hidden');
+            setTimeout(() => panel.classList.add('show'), 10);
+        }
+
+        // Function to show contact panel (will be called from main.js)
+        function showContact() {
+            const panel = document.getElementById('contact-panel');
+            panel.classList.remove('hidden');
+            setTimeout(() => panel.classList.add('show'), 10);
+        }
+
+        // Function to show projects panel (will be called from main.js)
+        function showProjects() {
+            const panel = document.getElementById('projects-panel');
+            const foldersGrid = document.getElementById('folders-grid');
+            
+            // Clear existing folders
+            foldersGrid.innerHTML = '';
+            
+            // Your actual projects with preview images
+            const projects = [
+                { id: 'project1', name: 'My Chatbot', image: '/images/chatbot.png' },
+                { id: 'project2', name: 'Gloten Website', image: '/images/gloten.jpg' },
+                { id: 'project3', name: 'Movies Hub', image: '/images/movieshub.jpg' }
+            ];
+            
+            // Create folder items
+            projects.forEach(project => {
+                const folderItem = document.createElement('div');
+                folderItem.className = 'folder-item';
+                folderItem.onclick = () => showProjectDetail(project.id);
+                
+                folderItem.innerHTML = `
+                    <div class="folder-icon">
+                        <div class="folder-flap"></div>
+                        <div class="folder-preview" style="background-image: url('${project.image}');"></div>
+                    </div>
+                    <div class="folder-name">${project.name}</div>
+                `;
+                
+                foldersGrid.appendChild(folderItem);
+            });
+            
+            panel.classList.remove('hidden');
+            setTimeout(() => panel.classList.add('show'), 10);
+        }
+
+        // Function to show project detail
+        function showProjectDetail(projectId) {
+            // Close projects panel
+            const projectsPanel = document.getElementById('projects-panel');
+            projectsPanel.classList.remove('show');
+            setTimeout(() => projectsPanel.classList.add('hidden'), 300);
+            
+            // Get project data
+            const project = window.ProjectsData[projectId];
+            if (!project) return;
+            
+            // Show project detail panel
+            const detailPanel = document.getElementById('project-detail-panel');
+            
+            // Populate with actual project data
+            document.getElementById('detail-project-title').textContent = project.title;
+            document.getElementById('detail-project-description').textContent = project.description;
+            
+            // Add skills
+            const skillsContainer = document.getElementById('detail-project-skills');
+            skillsContainer.innerHTML = '';
+            project.skills.forEach(skill => {
+                const tag = document.createElement('span');
+                tag.className = 'skill-tag';
+                tag.textContent = skill;
+                skillsContainer.appendChild(tag);
+            });
+            
+            // Set project link
+            const link = document.getElementById('detail-project-link');
+            link.href = project.link;
+            link.style.display = project.link ? 'inline-block' : 'none';
+            
+            // Set project image
+            const projectImage = document.getElementById('project-image');
+            if (projectId === 'project1') {
+                projectImage.style.backgroundImage = 'url("/images/chatbot.png")';
+            } else if (projectId === 'project2') {
+                projectImage.style.backgroundImage = 'url("/images/gloten.jpg")';
+            } else if (projectId === 'project3') {
+                projectImage.style.backgroundImage = 'url("/images/movieshub.jpg")';
+            }
+            
+            detailPanel.classList.remove('hidden');
+            setTimeout(() => detailPanel.classList.add('show'), 10);
+        }
+
+        // Handle projects panel close
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectsPanel = document.getElementById('projects-panel');
+            const projectsCloseBtn = document.querySelector('.projects-close');
+            
+            if (projectsCloseBtn) {
+                projectsCloseBtn.onclick = () => {
+                    projectsPanel.classList.remove('show');
+                    setTimeout(() => projectsPanel.classList.add('hidden'), 300);
+                };
+            }
+            
+            // Close projects panel when clicking outside
+            projectsPanel.addEventListener('click', function(e) {
+                if (e.target === projectsPanel) {
+                    projectsPanel.classList.remove('show');
+                    setTimeout(() => projectsPanel.classList.add('hidden'), 300);
+                }
+            });
+            
+            // Handle project detail panel close
+            const detailPanel = document.getElementById('project-detail-panel');
+            const detailCloseBtn = document.querySelector('.project-detail-close');
+            
+            if (detailCloseBtn) {
+                detailCloseBtn.onclick = () => {
+                    detailPanel.classList.remove('show');
+                    setTimeout(() => detailPanel.classList.add('hidden'), 300);
+                };
+            }
+            
+            // Close detail panel when clicking outside
+            detailPanel.addEventListener('click', function(e) {
+                if (e.target === detailPanel) {
+                    detailPanel.classList.remove('show');
+                    setTimeout(() => detailPanel.classList.add('hidden'), 300);
+                };
+            });
+            
+            // ESC key closes all panels
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' || e.key === 'Esc') {
+                    const workPanel = document.getElementById('work-experience-panel');
+                    const eduPanel = document.getElementById('education-panel');
+                    const contactPanel = document.getElementById('contact-panel');
+                    if (detailPanel && !detailPanel.classList.contains('hidden')) {
+                        detailPanel.classList.remove('show');
+                        setTimeout(() => detailPanel.classList.add('hidden'), 300);
+                    } else if (projectsPanel && !projectsPanel.classList.contains('hidden')) {
+                        projectsPanel.classList.remove('show');
+                        setTimeout(() => projectsPanel.classList.add('hidden'), 300);
+                    } else if (workPanel && !workPanel.classList.contains('hidden')) {
+                        workPanel.classList.remove('show');
+                        setTimeout(() => workPanel.classList.add('hidden'), 300);
+                    } else if (eduPanel && !eduPanel.classList.contains('hidden')) {
+                        eduPanel.classList.remove('show');
+                        setTimeout(() => eduPanel.classList.add('hidden'), 300);
+                    } else if (contactPanel && !contactPanel.classList.contains('hidden')) {
+                        contactPanel.classList.remove('show');
+                        setTimeout(() => contactPanel.classList.add('hidden'), 300);
+                    }
+                }
+            });
+            
+            // Handle work experience panel close
+            const workPanel = document.getElementById('work-experience-panel');
+            const workCloseBtn = document.querySelector('.work-experience-close');
+            
+            if (workCloseBtn) {
+                workCloseBtn.onclick = () => {
+                    workPanel.classList.remove('show');
+                    setTimeout(() => workPanel.classList.add('hidden'), 300);
+                };
+            }
+            
+            // Close work panel when clicking outside
+            workPanel.addEventListener('click', function(e) {
+                if (e.target === workPanel) {
+                    workPanel.classList.remove('show');
+                    setTimeout(() => workPanel.classList.add('hidden'), 300);
+                }
+            });
+            
+            // Handle education panel close
+            const eduPanel = document.getElementById('education-panel');
+            const eduCloseBtn = document.querySelector('.education-close');
+            
+            if (eduCloseBtn) {
+                eduCloseBtn.onclick = () => {
+                    eduPanel.classList.remove('show');
+                    setTimeout(() => eduPanel.classList.add('hidden'), 300);
+                };
+            }
+            
+            // Close education panel when clicking outside
+            eduPanel.addEventListener('click', function(e) {
+                if (e.target === eduPanel) {
+                    eduPanel.classList.remove('show');
+                    setTimeout(() => eduPanel.classList.add('hidden'), 300);
+                }
+            });
+            
+            // Handle contact panel close
+            const contactPanel = document.getElementById('contact-panel');
+            const contactCloseBtn = document.querySelector('.contact-close');
+            
+            if (contactCloseBtn) {
+                contactCloseBtn.onclick = () => {
+                    contactPanel.classList.remove('show');
+                    setTimeout(() => contactPanel.classList.add('hidden'), 300);
+                };
+            }
+            
+            // Close contact panel when clicking outside
+            contactPanel.addEventListener('click', function(e) {
+                if (e.target === contactPanel) {
+                    contactPanel.classList.remove('show');
+                    setTimeout(() => contactPanel.classList.add('hidden'), 300);
+                }
+            });
+        });
+    </script>
+
+    <script type="module" src="/main.js"></script>
+</body>
+</html>
