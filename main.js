@@ -26,14 +26,31 @@ class Portfolio {
     }
 
     init() {
-        // Detect mobile device
+        // Enhanced mobile device detection
         this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        this.isTablet = /(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(navigator.userAgent);
+        this.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        this.isAndroid = /Android/i.test(navigator.userAgent);
+        
+        // Detect screen size
+        this.isSmallScreen = window.innerWidth < 768;
+        this.isTinyScreen = window.innerWidth < 480;
+        
+        // Performance settings based on device
+        const useHighQuality = !this.isMobile && !this.isTablet;
         
         // Renderer setup with better quality
         this.renderer.setSize(window.innerWidth, window.innerHeight);
-        // Lower pixel ratio on mobile for better performance
-        this.renderer.setPixelRatio(this.isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
-        this.renderer.shadowMap.enabled = !this.isMobile; // Disable shadows on mobile
+        // Adaptive pixel ratio based on device
+        if (this.isTinyScreen) {
+            this.renderer.setPixelRatio(1);
+        } else if (this.isMobile || this.isTablet) {
+            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        } else {
+            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        }
+        
+        this.renderer.shadowMap.enabled = useHighQuality; // Disable shadows on mobile
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         this.renderer.outputColorSpace = THREE.SRGBColorSpace;
         this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -76,6 +93,13 @@ class Portfolio {
         window.addEventListener('resize', () => this.onWindowResize());
         window.addEventListener('click', (e) => this.onMouseClick(e));
         window.addEventListener('mousemove', (e) => this.onMouseMove(e));
+        
+        // Touch event support for mobile devices
+        if (this.isMobile || this.isTablet) {
+            window.addEventListener('touchstart', (e) => this.onTouchStart(e), { passive: false });
+            window.addEventListener('touchmove', (e) => this.onTouchMove(e), { passive: true });
+            window.addEventListener('touchend', (e) => this.onTouchEnd(e), { passive: false });
+        }
 
         // Music player setup
         this.setupMusicPlayer();
@@ -398,6 +422,48 @@ class Portfolio {
         this.camera.aspect = window.innerWidth / window.innerHeight;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(window.innerWidth, window.innerHeight);
+        
+        // Update screen size flags
+        this.isSmallScreen = window.innerWidth < 768;
+        this.isTinyScreen = window.innerWidth < 480;
+    }
+
+    // Touch event handlers for mobile devices
+    onTouchStart(event) {
+        if (event.touches.length === 1) {
+            event.preventDefault();
+            const touch = event.touches[0];
+            this.mouse.x = (touch.clientX / window.innerWidth) * 2 - 1;
+            this.mouse.y = -(touch.clientY / window.innerHeight) * 2 + 1;
+            
+            // Store touch position for tap detection
+            this.touchStartX = touch.clientX;
+            this.touchStartY = touch.clientY;
+            this.touchStartTime = Date.now();
+        }
+    }
+
+    onTouchMove(event) {
+        if (event.touches.length === 1) {
+            const touch = event.touches[0];
+            this.mouse.x = (touch.clientX / window.innerWidth) * 2 - 1;
+            this.mouse.y = -(touch.clientY / window.innerHeight) * 2 + 1;
+        }
+    }
+
+    onTouchEnd(event) {
+        // Detect tap (quick touch without much movement)
+        if (this.touchStartTime) {
+            const touchDuration = Date.now() - this.touchStartTime;
+            const touchMoveX = Math.abs(event.changedTouches[0].clientX - this.touchStartX);
+            const touchMoveY = Math.abs(event.changedTouches[0].clientY - this.touchStartY);
+            
+            // If touch was quick and didn't move much, treat as tap/click
+            if (touchDuration < 300 && touchMoveX < 10 && touchMoveY < 10) {
+                event.preventDefault();
+                this.onMouseClick(event);
+            }
+        }
     }
 
     animate() {

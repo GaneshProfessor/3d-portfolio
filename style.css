@@ -2,16 +2,28 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Better touch interactions */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow: hidden;
     background: #1a1a1a;
+    /* Prevent text selection on mobile */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* Smooth scrolling for modals */
+    -webkit-overflow-scrolling: touch;
 }
 
 canvas {
     display: block;
+    /* Prevent canvas touch issues */
+    touch-action: none;
 }
 
 #loading-screen {
