@@ -122,35 +122,23 @@ class Portfolio {
     }
 
     createReflectiveFloor() {
-        // Skip reflections on mobile for better performance
-        if (this.isMobile) {
-            // Simple floor for mobile
-            const geometry = new THREE.PlaneGeometry(50, 50);
-            const material = new THREE.MeshStandardMaterial({ 
-                color: 0x888888,
-                roughness: 0.3,
-                metalness: 0.5
-            });
-            const floor = new THREE.Mesh(geometry, material);
-            floor.position.y = -0.5;
-            floor.rotation.x = -Math.PI / 2;
-            floor.receiveShadow = true;
-            this.scene.add(floor);
-        } else {
-            // Reflective floor for desktop
-            const geometry = new THREE.PlaneGeometry(50, 50);
-            const reflector = new Reflector(geometry, {
-                clipBias: 0.003,
-                textureWidth: 1024,
-                textureHeight: 1024,
-                color: 0x888888,
-                opacity: 0.8
-            });
-            
-            reflector.position.y = -0.5;
-            reflector.rotation.x = -Math.PI / 2;
-            this.scene.add(reflector);
-        }
+        // Reflective floor for all devices with adaptive quality
+        const geometry = new THREE.PlaneGeometry(50, 50);
+        
+        // Lower resolution for mobile devices to maintain performance
+        const textureSize = (this.isMobile || this.isTablet) ? 512 : 1024;
+        
+        const reflector = new Reflector(geometry, {
+            clipBias: 0.003,
+            textureWidth: textureSize,
+            textureHeight: textureSize,
+            color: 0x888888,
+            opacity: (this.isMobile || this.isTablet) ? 0.6 : 0.8 // Slightly less reflective on mobile
+        });
+        
+        reflector.position.y = -0.5;
+        reflector.rotation.x = -Math.PI / 2;
+        this.scene.add(reflector);
     }
 
     create3DTextLabels() {
