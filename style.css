@@ -22,8 +22,8 @@ body {
 
 canvas {
     display: block;
-    /* Prevent canvas touch issues */
-    touch-action: none;
+    /* Allow touch events to pass through for UI elements */
+    touch-action: pan-y pan-x pinch-zoom;
 }
 
 #loading-screen {
@@ -355,6 +355,27 @@ canvas {
         min-width: 150px;
     }
     
+    .contact-icons {
+        top: 10px;
+        right: 10px;
+        padding: 12px 15px;
+        gap: 12px;
+    }
+    
+    .contact-label {
+        font-size: 12px;
+    }
+    
+    .icon-link {
+        min-width: 32px;
+        min-height: 32px;
+    }
+    
+    .icon-link svg {
+        width: 22px;
+        height: 22px;
+    }
+    
     .music-player {
         top: 10px;
         left: 10px;
@@ -382,8 +403,10 @@ canvas {
     .contact-icons {
         top: 10px;
         right: 10px;
-        padding: 10px;
+        padding: 8px 10px;
         gap: 8px;
+        flex-wrap: wrap;
+        max-width: calc(100vw - 20px);
     }
     
     .contact-label {
@@ -391,17 +414,18 @@ canvas {
     }
     
     .icon-link {
-        min-width: 36px; /* Slightly larger for touch on mobile */
-        min-height: 36px;
+        min-width: 40px; /* Larger for touch on mobile */
+        min-height: 40px;
     }
     
     .icon-link svg {
-        width: 20px;
-        height: 20px;
+        width: 22px;
+        height: 22px;
     }
     
     .music-player {
         min-width: 180px;
+        max-width: calc(100vw - 20px);
         padding: 8px 12px;
     }
     
@@ -411,6 +435,31 @@ canvas {
     
     .artist-name {
         font-size: 10px;
+    }
+}
+
+/* Tiny screens - stack contact icons vertically */
+@media (max-width: 360px) {
+    .contact-icons {
+        flex-direction: column;
+        padding: 8px;
+        gap: 6px;
+    }
+    
+    .icon-link {
+        min-width: 36px;
+        min-height: 36px;
+    }
+    
+    .music-player {
+        min-width: 160px;
+        padding: 6px 10px;
+    }
+    
+    .control-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 12px;
     }
 }
 

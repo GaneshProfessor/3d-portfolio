@@ -94,12 +94,9 @@ class Portfolio {
         window.addEventListener('click', (e) => this.onMouseClick(e));
         window.addEventListener('mousemove', (e) => this.onMouseMove(e));
         
-        // Touch event support for mobile devices
-        if (this.isMobile || this.isTablet) {
-            window.addEventListener('touchstart', (e) => this.onTouchStart(e), { passive: false });
-            window.addEventListener('touchmove', (e) => this.onTouchMove(e), { passive: true });
-            window.addEventListener('touchend', (e) => this.onTouchEnd(e), { passive: false });
-        }
+        // Touch event support for mobile devices - use capture phase
+        window.addEventListener('touchstart', (e) => this.onTouchStart(e), { passive: false, capture: true });
+        window.addEventListener('touchend', (e) => this.onTouchEnd(e), { passive: false, capture: true });
 
         // Music player setup
         this.setupMusicPlayer();
@@ -328,8 +325,21 @@ class Portfolio {
     }
 
     onMouseClick(event) {
-        this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-        this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        // Handle both mouse and touch events
+        let clientX, clientY;
+        
+        if (event.type === 'touchend' || event.type === 'touchstart') {
+            // For touch events, use the stored touch position
+            clientX = this.touchStartX || 0;
+            clientY = this.touchStartY || 0;
+        } else {
+            // For mouse events
+            clientX = event.clientX;
+            clientY = event.clientY;
+        }
+        
+        this.mouse.x = (clientX / window.innerWidth) * 2 - 1;
+        this.mouse.y = -(clientY / window.innerHeight) * 2 + 1;
 
         this.raycaster.setFromCamera(this.mouse, this.camera);
         
@@ -430,40 +440,119 @@ class Portfolio {
 
     // Touch event handlers for mobile devices
     onTouchStart(event) {
+        // Don't interfere with UI elements
+        if (event.target.closest('.contact-icons') || 
+            event.target.closest('.music-player') ||
+            event.target.closest('.about-panel') ||
+            event.target.closest('.projects-panel') ||
+            event.target.closest('.work-experience-panel') ||
+            event.target.closest('.education-panel') ||
+            event.target.closest('.contact-panel') ||
+            event.target.closest('.project-detail-panel')) {
+            return;
+        }
+        
         if (event.touches.length === 1) {
-            event.preventDefault();
             const touch = event.touches[0];
-            this.mouse.x = (touch.clientX / window.innerWidth) * 2 - 1;
-            this.mouse.y = -(touch.clientY / window.innerHeight) * 2 + 1;
             
             // Store touch position for tap detection
             this.touchStartX = touch.clientX;
             this.touchStartY = touch.clientY;
             this.touchStartTime = Date.now();
-        }
-    }
-
-    onTouchMove(event) {
-        if (event.touches.length === 1) {
-            const touch = event.touches[0];
+            
+            // Update mouse position for raycasting
             this.mouse.x = (touch.clientX / window.innerWidth) * 2 - 1;
             this.mouse.y = -(touch.clientY / window.innerHeight) * 2 + 1;
         }
     }
 
     onTouchEnd(event) {
+        // Don't interfere with UI elements
+        if (event.target.closest('.contact-icons') || 
+            event.target.closest('.music-player') ||
+            event.target.closest('.about-panel') ||
+            event.target.closest('.projects-panel') ||
+            event.target.closest('.work-experience-panel') ||
+            event.target.closest('.education-panel') ||
+            event.target.closest('.contact-panel') ||
+            event.target.closest('.project-detail-panel')) {
+            return;
+        }
+        
         // Detect tap (quick touch without much movement)
-        if (this.touchStartTime) {
+        if (this.touchStartTime && this.touchStartX !== undefined) {
             const touchDuration = Date.now() - this.touchStartTime;
-            const touchMoveX = Math.abs(event.changedTouches[0].clientX - this.touchStartX);
-            const touchMoveY = Math.abs(event.changedTouches[0].clientY - this.touchStartY);
+            const touch = event.changedTouches[0];
+            const touchMoveX = Math.abs(touch.clientX - this.touchStartX);
+            const touchMoveY = Math.abs(touch.clientY - this.touchStartY);
             
             // If touch was quick and didn't move much, treat as tap/click
-            if (touchDuration < 300 && touchMoveX < 10 && touchMoveY < 10) {
+            if (touchDuration < 500 && touchMoveX < 20 && touchMoveY < 20) {
                 event.preventDefault();
-                this.onMouseClick(event);
+                event.stopPropagation();
+                
+                // Use the stored touch start position for accuracy
+                this.mouse.x = (this.touchStartX / window.innerWidth) * 2 - 1;
+                this.mouse.y = -(this.touchStartY / window.innerHeight) * 2 + 1;
+                
+                // Perform raycast check
+                this.raycaster.setFromCamera(this.mouse, this.camera);
+                
+                // Check for menu text click
+                if (this.menuTextMesh) {
+                    const menuIntersects = this.raycaster.intersectObject(this.menuTextMesh);
+                    if (menuIntersects.length > 0) {
+                        const uv = menuIntersects[0].uv;
+                        const yPos = uv.y;
+                        
+                        console.log('Menu tapped! UV Y:', yPos); // Debug log
+                        
+                        // Menu items positions
+                        if (yPos > 0.72 && yPos < 0.78) {
+                            window.showAboutMe();
+                        } else if (yPos > 0.66 && yPos < 0.72) {
+                            window.showProjects();
+                        } else if (yPos > 0.59 && yPos < 0.66) {
+                            window.showWorkExperience();
+                        } else if (yPos > 0.52 && yPos < 0.59) {
+                            window.showEducation();
+                        } else if (yPos > 0.45 && yPos < 0.52) {
+                            window.showContact();
+                        }
+                        
+                        // Clear touch data
+                        this.touchStartTime = null;
+                        this.touchStartX = undefined;
+                        this.touchStartY = undefined;
+                        return;
+                    }
+                }
+                
+                // Check for project objects
+                const intersects = this.raycaster.intersectObjects(this.interactiveObjects);
+                if (intersects.length > 0) {
+                    const clickedObject = intersects[0].object;
+                    const projectId = clickedObject.userData.projectId;
+                    
+                    console.log('Object tapped:', projectId); // Debug log
+                    
+                    if (projectId === 'project1') {
+                        window.open('https://drive.google.com/file/d/1eJ5R99efVtxmc-MX5rnkXjVJTfiUpVdM/view?usp=sharing', '_blank');
+                    } else {
+                        this.showProjectInfo(projectId);
+                    }
+                }
             }
+            
+            // Clear touch data
+            this.touchStartTime = null;
+            this.touchStartX = undefined;
+            this.touchStartY = undefined;
         }
+    }
+
+    onTouchMove(event) {
+        // This is handled by OrbitControls
     }
 
     animate() {
