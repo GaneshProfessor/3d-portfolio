@@ -340,8 +340,29 @@
             });
         });
 
+        // Function to close all modals
+        function closeAllModals() {
+            const modals = [
+                'about-panel',
+                'projects-panel',
+                'project-detail-panel',
+                'work-experience-panel',
+                'education-panel',
+                'contact-panel'
+            ];
+            
+            modals.forEach(modalId => {
+                const modal = document.getElementById(modalId);
+                if (modal && !modal.classList.contains('hidden')) {
+                    modal.classList.remove('show');
+                    modal.classList.add('hidden');
+                }
+            });
+        }
+
         // Function to show about me panel (will be called from main.js)
         function showAboutMe() {
+            closeAllModals(); // Close any open modals first
             const panel = document.getElementById('about-panel');
             panel.classList.remove('hidden');
             setTimeout(() => panel.classList.add('show'), 10);
@@ -349,6 +370,7 @@
 
         // Function to show work experience panel (will be called from main.js)
         function showWorkExperience() {
+            closeAllModals(); // Close any open modals first
             const panel = document.getElementById('work-experience-panel');
             const timeline = document.getElementById('work-timeline');
             
@@ -407,6 +429,7 @@
 
         // Function to show education panel (will be called from main.js)
         function showEducation() {
+            closeAllModals(); // Close any open modals first
             const panel = document.getElementById('education-panel');
             const grid = document.getElementById('education-grid');
             
@@ -478,6 +501,7 @@
 
         // Function to show contact panel (will be called from main.js)
         function showContact() {
+            closeAllModals(); // Close any open modals first
             const panel = document.getElementById('contact-panel');
             panel.classList.remove('hidden');
             setTimeout(() => panel.classList.add('show'), 10);
@@ -485,6 +509,7 @@
 
         // Function to show projects panel (will be called from main.js)
         function showProjects() {
+            closeAllModals(); // Close any open modals first
             const panel = document.getElementById('projects-panel');
             const foldersGrid = document.getElementById('folders-grid');
             

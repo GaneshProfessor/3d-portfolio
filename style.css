@@ -7,6 +7,21 @@
     -webkit-touch-callout: none;
 }
 
+/* Smooth scrolling for all elements */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Smooth scrolling for modal content */
+.scrapbook-container,
+.polaroid-grid,
+.work-experience-window,
+.education-window,
+.education-grid {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow: hidden;
@@ -18,12 +33,17 @@ body {
     user-select: none;
     /* Smooth scrolling for modals */
     -webkit-overflow-scrolling: touch;
+    /* Hardware acceleration */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 canvas {
     display: block;
     /* Allow touch events to pass through for UI elements */
     touch-action: pan-y pan-x pinch-zoom;
+    /* Hardware acceleration */
+    will-change: transform;
 }
 
 #loading-screen {
@@ -501,9 +521,13 @@ canvas {
     position: relative;
     overflow-y: auto;
     transform: scale(0.8);
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     /* Prevent clicks from passing through to 3D scene */
     pointer-events: auto;
+    /* Hardware acceleration for smooth animations */
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .about-panel.show .scrapbook-container {
@@ -517,6 +541,11 @@ canvas {
 .business-card,
 .project-detail-window {
     pointer-events: auto;
+    /* Hardware acceleration */
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .about-close {
@@ -762,7 +791,7 @@ canvas {
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     will-change: transform;
 }

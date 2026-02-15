@@ -61,16 +61,24 @@ class Portfolio {
         this.camera.position.set(8, 6, 8);
         this.camera.lookAt(0, 1, 0);
 
-        // Controls - strict limits to prevent bottom view
+        // Controls - smooth and responsive
         this.controls = new OrbitControls(this.camera, this.renderer.domElement);
         this.controls.enableDamping = true;
-        this.controls.dampingFactor = 0.05;
+        this.controls.dampingFactor = 0.08; // Increased for smoother movement
         this.controls.minDistance = 5;
         this.controls.maxDistance = 20;
         this.controls.target.set(0, 1, 0);
         // Strict vertical rotation limits
         this.controls.maxPolarAngle = Math.PI / 2.2; // Can't go below horizontal
         this.controls.minPolarAngle = Math.PI / 6; // Can't go too high
+        // Smooth rotation and zoom
+        this.controls.rotateSpeed = 0.5; // Slower, smoother rotation
+        this.controls.zoomSpeed = 0.8; // Smoother zoom
+        this.controls.panSpeed = 0.5; // Smoother pan
+        this.controls.enablePan = true;
+        // Smooth inertia
+        this.controls.minAzimuthAngle = -Infinity;
+        this.controls.maxAzimuthAngle = Infinity;
 
         // Scene setup - dark background for floating island effect
         this.scene.background = new THREE.Color(0x1a1a1a);
@@ -146,14 +154,23 @@ class Portfolio {
     }
 
     create3DTextLabels() {
-        // Create canvas for text with better quality
+        // Create high-resolution canvas for crisp text
         const canvas = document.createElement('canvas');
         const context = canvas.getContext('2d');
-        canvas.width = 1024;
-        canvas.height = 1024;
+        // Increase resolution 4x for much sharper text
+        const scale = 4;
+        canvas.width = 1024 * scale;
+        canvas.height = 1024 * scale;
+        
+        // Scale context to match
+        context.scale(scale, scale);
 
         // Clear canvas with transparent background
         context.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Enable text smoothing for better quality
+        context.imageSmoothingEnabled = true;
+        context.imageSmoothingQuality = 'high';
 
         // Set text baseline for consistent alignment
         context.textBaseline = 'top';
@@ -178,9 +195,15 @@ class Portfolio {
         context.fillText('education', 40, 430);
         context.fillText('contact me', 40, 500);
 
-        // Create texture from canvas
+        // Create texture from canvas with high quality settings
         const texture = new THREE.CanvasTexture(canvas);
         texture.needsUpdate = true;
+        // Enable anisotropic filtering for sharper text at angles
+        texture.anisotropy = this.renderer.capabilities.getMaxAnisotropy();
+        // Use better filtering
+        texture.minFilter = THREE.LinearMipmapLinearFilter;
+        texture.magFilter = THREE.LinearFilter;
+        texture.generateMipmaps = true;
 
         // Create plane with text
         const textMaterial = new THREE.MeshBasicMaterial({
