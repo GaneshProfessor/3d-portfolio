@@ -131,22 +131,22 @@ canvas {
 /* Contact Icons - Top Right */
 .contact-icons {
     position: fixed;
-    top: 100px; /* Moved down to avoid overlap with music player */
+    top: 30px; /* Same level as music player */
     right: 30px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    padding: 15px 20px;
-    border-radius: 15px;
+    padding: 8px 12px; /* Smaller padding */
+    border-radius: 10px; /* Smaller radius */
     z-index: 100;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 8px; /* Smaller gap */
 }
 
 .contact-label {
     color: white;
-    font-size: 14px;
-    margin-right: 5px;
+    font-size: 11px; /* Smaller text */
+    margin-right: 3px;
 }
 
 .icon-link {
@@ -155,13 +155,18 @@ canvas {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 24px;
-    min-height: 24px;
+    min-width: 20px; /* Smaller icons */
+    min-height: 20px;
+}
+
+.icon-link svg {
+    width: 18px; /* Smaller SVG */
+    height: 18px;
 }
 
 .icon-link:hover {
     color: #ffd7a8;
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 /* Music Player */
@@ -376,24 +381,24 @@ canvas {
     }
     
     .contact-icons {
-        top: 80px; /* Moved down on tablets to avoid overlap */
+        top: 10px; /* Same level as music player on tablets */
         right: 10px;
-        padding: 12px 15px;
-        gap: 12px;
+        padding: 6px 10px;
+        gap: 6px;
     }
     
     .contact-label {
-        font-size: 12px;
+        font-size: 10px;
     }
     
     .icon-link {
-        min-width: 32px;
-        min-height: 32px;
+        min-width: 24px;
+        min-height: 24px;
     }
     
     .icon-link svg {
-        width: 22px;
-        height: 22px;
+        width: 16px;
+        height: 16px;
     }
     
     .music-player {
@@ -421,12 +426,12 @@ canvas {
 /* Extra small phones */
 @media (max-width: 480px) {
     .contact-icons {
-        top: 70px; /* Moved down on mobile to avoid overlap */
+        top: 10px; /* Same level as music player on mobile */
         right: 10px;
-        padding: 8px 10px;
-        gap: 8px;
-        flex-wrap: wrap;
-        max-width: calc(100vw - 20px);
+        padding: 5px 8px;
+        gap: 6px;
+        flex-wrap: nowrap; /* Keep in one line */
+        max-width: calc(100vw - 220px); /* Leave space for music player */
     }
     
     .contact-label {
@@ -434,18 +439,18 @@ canvas {
     }
     
     .icon-link {
-        min-width: 40px; /* Larger for touch on mobile */
-        min-height: 40px;
+        min-width: 28px; /* Touch-friendly but compact */
+        min-height: 28px;
     }
     
     .icon-link svg {
-        width: 22px;
-        height: 22px;
+        width: 16px;
+        height: 16px;
     }
     
     .music-player {
         min-width: 180px;
-        max-width: calc(100vw - 20px);
+        max-width: 200px;
         padding: 8px 12px;
     }
     

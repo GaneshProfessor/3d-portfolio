@@ -190,7 +190,8 @@ export class Room {
             emissiveIntensity: 1.2,
             transparent: true,
             opacity: 0.9,
-            roughness: 0.1
+            roughness: 0.1,
+            depthWrite: false // Prevent z-fighting
         });
         
         // Four window panes - bright and glowing
@@ -203,7 +204,7 @@ export class Room {
         
         positions.forEach(([x, y]) => {
             const glass = new THREE.Mesh(glassGeometry, glassMaterial);
-            glass.position.set(x, y, 0.08);
+            glass.position.set(x, y, 0.09); // Slightly more forward to prevent z-fighting
             windowGroup.add(glass);
         });
 
