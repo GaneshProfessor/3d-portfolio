@@ -32,8 +32,8 @@ class Portfolio {
         // Renderer setup with better quality
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         // Lower pixel ratio on mobile for better performance
-        this.renderer.setPixelRatio(this.isMobile ? Math.min(window.devicePixelRatio, 1.5) : Math.min(window.devicePixelRatio, 2));
-        this.renderer.shadowMap.enabled = !this.isMobile; // Disable shadows on mobile for performance
+        this.renderer.setPixelRatio(this.isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
+        this.renderer.shadowMap.enabled = !this.isMobile; // Disable shadows on mobile
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         this.renderer.outputColorSpace = THREE.SRGBColorSpace;
         this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -54,14 +54,6 @@ class Portfolio {
         // Strict vertical rotation limits
         this.controls.maxPolarAngle = Math.PI / 2.2; // Can't go below horizontal
         this.controls.minPolarAngle = Math.PI / 6; // Can't go too high
-        
-        // Mobile-specific controls
-        if (this.isMobile) {
-            this.controls.enableDamping = true;
-            this.controls.dampingFactor = 0.1; // Smoother on mobile
-            this.controls.rotateSpeed = 0.5; // Slower rotation on mobile
-            this.controls.enablePan = false; // Disable panning on mobile
-        }
 
         // Scene setup - dark background for floating island effect
         this.scene.background = new THREE.Color(0x1a1a1a);
@@ -84,12 +76,6 @@ class Portfolio {
         window.addEventListener('resize', () => this.onWindowResize());
         window.addEventListener('click', (e) => this.onMouseClick(e));
         window.addEventListener('mousemove', (e) => this.onMouseMove(e));
-        
-        // Touch events for mobile
-        if (this.isMobile) {
-            window.addEventListener('touchstart', (e) => this.onTouchStart(e));
-            window.addEventListener('touchend', (e) => this.onTouchEnd(e));
-        }
 
         // Music player setup
         this.setupMusicPlayer();
@@ -107,35 +93,35 @@ class Portfolio {
     }
 
     createReflectiveFloor() {
-        // Skip reflective floor on mobile for better performance
+        // Skip reflections on mobile for better performance
         if (this.isMobile) {
             // Simple floor for mobile
             const geometry = new THREE.PlaneGeometry(50, 50);
-            const material = new THREE.MeshStandardMaterial({
+            const material = new THREE.MeshStandardMaterial({ 
                 color: 0x888888,
-                roughness: 0.8,
-                metalness: 0.2
+                roughness: 0.3,
+                metalness: 0.5
             });
             const floor = new THREE.Mesh(geometry, material);
             floor.position.y = -0.5;
             floor.rotation.x = -Math.PI / 2;
+            floor.receiveShadow = true;
             this.scene.add(floor);
-            return;
+        } else {
+            // Reflective floor for desktop
+            const geometry = new THREE.PlaneGeometry(50, 50);
+            const reflector = new Reflector(geometry, {
+                clipBias: 0.003,
+                textureWidth: 1024,
+                textureHeight: 1024,
+                color: 0x888888,
+                opacity: 0.8
+            });
+            
+            reflector.position.y = -0.5;
+            reflector.rotation.x = -Math.PI / 2;
+            this.scene.add(reflector);
         }
-        
-        // Full reflective floor for desktop
-        const geometry = new THREE.PlaneGeometry(50, 50);
-        const reflector = new Reflector(geometry, {
-            clipBias: 0.003,
-            textureWidth: 1024,
-            textureHeight: 1024,
-            color: 0x888888,
-            opacity: 0.8
-        });
-        
-        reflector.position.y = -0.5;
-        reflector.rotation.x = -Math.PI / 2;
-        this.scene.add(reflector);
     }
 
     create3DTextLabels() {
@@ -412,38 +398,6 @@ class Portfolio {
         this.camera.aspect = window.innerWidth / window.innerHeight;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(window.innerWidth, window.innerHeight);
-    }
-
-    onTouchStart(event) {
-        // Store touch position for tap detection
-        if (event.touches.length === 1) {
-            this.touchStartX = event.touches[0].clientX;
-            this.touchStartY = event.touches[0].clientY;
-            this.touchStartTime = Date.now();
-        }
-    }
-
-    onTouchEnd(event) {
-        // Detect tap (not swipe)
-        if (event.changedTouches.length === 1) {
-            const touchEndX = event.changedTouches[0].clientX;
-            const touchEndY = event.changedTouches[0].clientY;
-            const touchEndTime = Date.now();
-            
-            const deltaX = Math.abs(touchEndX - this.touchStartX);
-            const deltaY = Math.abs(touchEndY - this.touchStartY);
-            const deltaTime = touchEndTime - this.touchStartTime;
-            
-            // If movement is small and quick, treat as tap
-            if (deltaX < 10 && deltaY < 10 && deltaTime < 300) {
-                // Simulate click event
-                const clickEvent = {
-                    clientX: touchEndX,
-                    clientY: touchEndY
-                };
-                this.onMouseClick(clickEvent);
-            }
-        }
     }
 
     animate() {
