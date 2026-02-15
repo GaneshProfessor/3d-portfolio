@@ -131,7 +131,7 @@ canvas {
 /* Contact Icons - Top Right */
 .contact-icons {
     position: fixed;
-    top: 30px;
+    top: 100px; /* Moved down to avoid overlap with music player */
     right: 30px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -376,7 +376,7 @@ canvas {
     }
     
     .contact-icons {
-        top: 10px;
+        top: 80px; /* Moved down on tablets to avoid overlap */
         right: 10px;
         padding: 12px 15px;
         gap: 12px;
@@ -421,7 +421,7 @@ canvas {
 /* Extra small phones */
 @media (max-width: 480px) {
     .contact-icons {
-        top: 10px;
+        top: 70px; /* Moved down on mobile to avoid overlap */
         right: 10px;
         padding: 8px 10px;
         gap: 8px;
